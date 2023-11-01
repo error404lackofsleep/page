@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Public Transport Optimization</title>
+<script>
+var distance = 25;
+function updateReadings() {
+distance = getRandomValue(10, 300);
+document.getElementById("distance").innerHTML = 
+"distance in cm " +
+distance + "cm";
+}
+function getRandomValue(min, max){
+return Math.random() * (max - min) + min;
+}
+setInterval(updateReadings, 2000);
+updateReadings();
+</script>
+</head>
+<body>
+<h1>Public Transport Optimization</h1>
+<p id="distance">distance: - cm</p>
+<p id="alertMessage"></p>
+</body>
+</html>
