@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Public Transport Optimization</title>
-<script>
-var distance = 25;
-function updateReadings() {
-distance = getRandomValue(10, 300);
-document.getElementById("distance").innerHTML = 
-"distance in cm " +
-distance + "cm";
-}
-function getRandomValue(min, max){
-return Math.random() * (max - min) + min;
-}
-setInterval(updateReadings, 2000);
-updateReadings();
-</script>
+    <title>Public Transport Optimization</title>
+    <script>
+        var arrivalTime = { hours: 10, minutes: 0 }; 
+        function updateArrivalTime() {
+            if (arrivalTime.hours === 0 && arrivalTime.minutes === 0) {
+                document.getElementById("arrivalTime").innerHTML = "Arrival Time: 00:00";
+            } else {
+                // Display the current arrival time
+                document.getElementById("arrivalTime").innerHTML = "Arrival Time: " +
+                    (arrivalTime.hours < 10 ? "0" + arrivalTime.hours : arrivalTime.hours) +
+                    ":" +
+                    (arrivalTime.minutes < 10 ? "0" + arrivalTime.minutes : arrivalTime.minutes);         
+                // Update the arrival time
+                if (arrivalTime.minutes === 0) {
+                    arrivalTime.minutes = 59;
+                    arrivalTime.hours--;
+                } else {
+                    arrivalTime.minutes--;
+                }
+            }
+        }
+        // Call updateArrivalTime every minute (6000 milliseconds)
+        setInterval(updateArrivalTime, 6000);
+        updateArrivalTime();
+    </script>
 </head>
 <body>
-<h1>Public Transport Optimization</h1>
-<p id="distance">distance: - cm</p>
-<p id="alertMessage"></p>
+    <h1>Public Transport Optimization</h1>
+    <p id="arrivalTime">Arrival Time: -</p>
+    <p id="alertMessage"></p>
 </body>
 </html>
